@@ -61,10 +61,13 @@ export {
   PubSubMap,
 };
 
+const SINGLETON_KEY = Symbol.for("pub-sub-map");
+globalThis[SINGLETON_KEY] ||= new PubSubMap();
+
 /**
  * @module pub-sub-map
  *
  * @summary
  * Export a PubSubMap instance.
  */
-export default new PubSubMap();
+export default globalThis[SINGLETON_KEY];
